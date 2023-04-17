@@ -1,0 +1,73 @@
+{
+  "inbounds": [
+    {
+      "port": "1080",
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "{{{IP}}}",
+            "port": 2053,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "73de8dc7-1bf9-4670-b750-84560a71af6d"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "grpcSettings": {
+          "serviceName": "LoadBalancer"
+        },
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "disableSystemRoot": false,
+          "serverName": "cleared.smilecode.ir"
+        },
+        "xtlsSettings": {
+          "disableSystemRoot": false
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 10,
+        "connIdle": 100,
+        "uplinkOnly": 2,
+        "downlinkOnly": 3,
+        "statsUserUplink": true,
+        "statsUserDownlink": true,
+        "bufferSize": 10240
+      }
+    },
+    "system": {
+      "statsInboundDownlink": true,
+      "statsInboundUplink": true
+    }
+  },
+  "stats": {}
+}

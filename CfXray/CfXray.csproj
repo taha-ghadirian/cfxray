@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.22.3" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.53.0-pre1" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.32.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="XrayApis\common\protocol\user.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+    <Protobuf Include="XrayApis\common\serial\typed_message.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+    <Protobuf Include="XrayApis\core/config.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+    <Protobuf Include="XrayApis\proxyman\command\command.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+    <Protobuf Include="XrayApis\transport\global\config.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+    <Protobuf Include="XrayApis\transport\internet\config.proto" GrpcServices="Client" AdditionalImportDirs="XrayApis\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XrayFiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="XrayFiles\xray-linux-amd64">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="XrayFiles\Base.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!--    <ItemGroup>-->
+  <!--        <Protobuf Include="XrayApis/proxyman/command/command.proto" GrpcServices="Client" ProtoRoot="/XrayApis" />-->
+  <!--        <Protobuf Include="XrayApis/common/protocol/user.proto" GrpcServices="None" ProtoRoot="/XrayApis" />-->
+  <!--        <Protobuf Include="XrayApis/common/serial/typed_message.proto" GrpcServices="None" ProtoRoot="/XrayApis" />-->
+  <!--        <Protobuf Include="XrayApis/core/config.proto" GrpcServices="None" ProtoRoot="/XrayApis" />-->
+  <!--        <Protobuf Include="XrayApis/transport/global/config.proto" GrpcServices="None" ProtoRoot="/XrayApis" />-->
+  <!--        <Protobuf Include="XrayApis/transport/internet/config.proto" GrpcServices="None" ProtoRoot="/XrayApis" />-->
+  <!--    </ItemGroup>-->
+</Project>
